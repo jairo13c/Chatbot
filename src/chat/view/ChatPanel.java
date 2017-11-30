@@ -2,6 +2,7 @@ package chat.view;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.SpringLayout;
@@ -9,6 +10,12 @@ import chat.controller.ChatbotController;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+
+
+
+
+
 
 public class ChatPanel extends JPanel
 {
@@ -18,6 +25,7 @@ public class ChatPanel extends JPanel
 	private JTextArea chatArea;
 	private SpringLayout appLayout;
 	private JButton checkerButton;
+	private JLabel infoLabel;
 	
 	public ChatPanel(ChatbotController appController)
 	{
@@ -26,6 +34,7 @@ public class ChatPanel extends JPanel
 		chatButton = new JButton("chat");
 		chatArea = new JTextArea(10,25);
 		inputField = new JTextField(20);
+		infoLabel = new JLabel("type to chat ith the chatbot");
 		appLayout = new SpringLayout();
 		
 		
@@ -66,5 +75,17 @@ public class ChatPanel extends JPanel
 				inputField.setText("");
 			}
 		});
+		
+		checkerButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				String userText = inputField.getText();
+				String dispayText = appController.useCheckers(userText);
+				chatArea.append(dispayText);
+				inputField.setText("");
+			}
+			});
+		
 	}
 }

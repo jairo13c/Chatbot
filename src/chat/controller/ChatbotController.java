@@ -37,6 +37,23 @@ public class ChatbotController
 		return chatbotSays;
 		
 	}
+	
+	public String useCheckers(String text)
+	{
+		String response = "";
+		
+		if(chatbot.contentChecker(text))
+		{
+			response += "this text matches the special content\n";
+		}
+		if(chatbot.cuteAnimalMemeChecker(text))
+		{
+			response +="";
+			//continue with all checkers except length and quit checker
+			
+		}
+		return response;
+	}
 	private void close()
 	{
 		display.displayText("Godbye");
@@ -46,7 +63,7 @@ public class ChatbotController
 	private String popupChat(String chat)
 
 	{
-		String chatbotSays = ""; //Assigns a valid value to a variable that will be rern for the method.
+		String chatbotSays = ""; //Assigns a valid value to a variable that will be return for the method.
 		chatbotSays += chatbot.processConversation(chat);
 
 		return chatbotSays;
@@ -55,14 +72,14 @@ public class ChatbotController
 	{
 		return chatbot;
 	}
-	//public PopupDisplay getDisplay() 
-	//{
-		
-	//}
-	//public ChatFrame getChatFrame()
-	//{
-		
-	//}
+	public PopupDisplay getDisplay() 
+	{
+		return getDisplay();
+	}
+	public ChatFrame getChatFrame()
+	{
+		return getChatFrame();
+	}
 	
 	
 }
