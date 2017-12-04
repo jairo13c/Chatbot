@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Chatbot
 {
-	private List<Movie> movieList;
+	private ArrayList<Movie> movieList;
 	private List<String> shoppingList;
 	private List<String> cuteAnimalMemes;
 	private String [] verbs;
@@ -52,7 +52,6 @@ public class Chatbot
 
 	private void buildMovieList()
 	{
-	
 		
 	}
 	
@@ -63,7 +62,6 @@ public class Chatbot
 		shoppingList.add("protein");
 		shoppingList.add("frut");
 		shoppingList.add("gross things");
-		
 	}
 	
 	private void buildCuteAnimals()
@@ -126,10 +124,41 @@ public class Chatbot
 		return validLength;
 	}
 	
-	public boolean htmlTagChecker(String input)
+	public boolean inputHTMLChecker(String input) 
 	{
-		return false;
+		boolean containsHTML = false;
+		if(input == null || !input.contains("<"))
+		{
+			return containsHTML;
+		}
+		int firstOpen = input.indexOf("<");
+		int firstClose = input.indexOf(">",firstOpen);
+		int secondOpen = -9;
+		int secondClos = -9;
+		String tagText = "" ;
+	 
+		//check bad tags
+		if(input.contains("<>") || input.indexOf("<>") > -1)
+		{
+			containsHTML = false;
+		}
+		//check singleton
+		if(input.toUpperCase().contains("<P>") || input.toLowerCase().contains("<br"))
+		{
+			containsHTML = true;
+		}
+		//check others
+		else  if(firstClose > firstOpen)
+		{
+			//others
+			tagText = input.substring(firstOpen + 1, firstClose).toLowerCase();
+			secondOpen = input.toLowerCase().indexOf("</" + tagText, firstClose);
+			
+		}
+		return containsHTML;
 	}
+		 
+	
 	
 	public boolean userNameChecker(String input)
 	{
@@ -179,7 +208,7 @@ public class Chatbot
 	
 	public List<Movie> getMovieList()
 	{
-		return movieList;
+		return null;
 	}
 	
 	public List<String> getShoppingList()
