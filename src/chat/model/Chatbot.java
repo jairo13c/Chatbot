@@ -23,11 +23,10 @@ public class Chatbot
 		this.movieList = new ArrayList<Movie>();
 		this.shoppingList = new ArrayList<String>(); 
 		this.cuteAnimalMemes = new ArrayList<String>(); 
-		this.currentTime = null;
 		this.username = username;
-		this.content = null;
+		this.content = content;
 		this.intro = "intro";
-		this.currentTime = currentTime;
+		this.currentTime = LocalTime.now();
 		this.topics = new String [7];
 		this.verbs = new String [3];
 		this.followUps = new String [5];
@@ -40,6 +39,10 @@ public class Chatbot
 		topics();
 		followUps();
 		buildVerbs();
+		getIntro();
+		getCurrentTime();
+		getUsername();
+		getContent();
 		
 	}
 	private void buildVerbs()
@@ -54,7 +57,23 @@ public class Chatbot
 	{
 		
 	}
-	
+	private void topics()
+	{
+		topics[0] = "food";
+		topics[1] = "sports";
+		topics[2] = "movies";
+		topics[3] = "tv series";
+		topics[4] = "cars";
+		topics[5] = "phones";
+		topics[6] = "music";
+		
+		
+	}
+	private void followUps()
+	{
+		
+	}
+
 	private void buildShoppingList()
 	{
 		shoppingList.add("snacks");
@@ -85,26 +104,18 @@ public class Chatbot
 		questions[9] = "what are your interests?";
 		
 	}
-	private void topics()
-	{
-		topics[0] = "food";
-		topics[1] = "sports";
-		topics[2] = "movies";
-		topics[3] = "tv series";
-		topics[4] = "cars";
-		topics[5] = "phones";
-		topics[6] = "music";
-		
-		
-	}
-	private void followUps()
-	{
-		
-	}
+	/**
+	 * build a response a based on the users input and the reated chatbot response.
+	 * @param input the users text as a String.
+	 * @return the chatbot. 
+	 */
+
 	
 	public String processConversation(String input)
 	{
 		String chatbotResponse = "";
+		currentTime = LocalTime.now();
+		chatbotResponse += currentTime.getHour() + ":" + currentTime.getMinute() + "";
 		chatbotResponse += "you said:" + "\n" + input + "\n";
 		
 		chatbotResponse += buildChatbotResponse();
@@ -208,7 +219,7 @@ public class Chatbot
 	
 	public List<Movie> getMovieList()
 	{
-		return null;
+		return movieList;
 	}
 	
 	public List<String> getShoppingList()
@@ -337,12 +348,12 @@ public class Chatbot
 
 	public String getIntro()
 	{
-		return null;
+		return getIntro();
 	}
 	
 	public LocalTime getCurrentTime()
 	{
-		return null;
+		return getCurrentTime();
 	}
 	
 	public void setUsername(String username)
