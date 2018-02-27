@@ -13,11 +13,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JScrollPane;
 
 
-
-
-
-
-
 public class ChatPanel extends JPanel
 {
 	private ChatbotController appController;

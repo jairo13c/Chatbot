@@ -20,7 +20,8 @@ public class ChatbotController
 	public void start()//start program
 	{
 		
-		display.displayText("welcome to Chatbot"); 
+		String results = IOController.loadFromFile(this, "commonWords.txt");
+		IOController.saveToFile(this, results,  "save results.txt");
 		
 	}
 	public String interactWithChatbot(String input)
@@ -74,11 +75,15 @@ public class ChatbotController
 	}
 	public PopupDisplay getDisplay() 
 	{
-		return getDisplay();
+		return display;
 	}
 	public ChatFrame getChatFrame()
 	{
-		return getChatFrame();
+		return appFrame;
+	}
+	public void handleErrors(Exception error)
+	{
+		display.displayText(error.getMessage());
 	}
 	
 	
